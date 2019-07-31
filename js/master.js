@@ -57,6 +57,7 @@ window .onload = () => {
           
             console .group( `id = ${ id }` );
             //console .log( `${ properties }` );
+            console .log( createUnorderListElement( id ) );
 
             // Itera propiedades (2do Nivel de Profundidad del Objeto)
             properties .forEach( property => {
@@ -67,5 +68,11 @@ window .onload = () => {
         }
     }
    
+    function createUnorderListElement( value ) {
+        let $ul = document .createElement( 'ul' );
+
+        $ul .setAttribute( 'data-id', value );
+        return $ul;
+    }
 
 }
