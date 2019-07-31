@@ -57,15 +57,17 @@ window .onload = () => {
           
             console .group( `id = ${ id }` );
             //console .log( `${ properties }` );
-            console .log( createUnorderListElement( id ) );
+            let $ul = createUnorderListElement( id );                       // Crea un elemento UL por cada ID del Objeto
 
             // Itera propiedades (2do Nivel de Profundidad del Objeto)
             properties .forEach( property => {
-                console .log( `${ property } = ${ data[ id ][ property ] }` );
-                console .log( createListItemElement( property, data[ id ][ property ] ) );
+                //console .log( `${ property } = ${ data[ id ][ property ] }` );
+                $ul .appendChild( createListItemElement( property, data[ id ][ property ] ) );    // Crea un LI por cada propiedad del Objeto iterado y lo agrega al elemento UL
             });
+            console .log( $ul );
             console .groupEnd();
 
+            document .querySelector( '.data' ) .appendChild( $ul );
         }
     }
    
