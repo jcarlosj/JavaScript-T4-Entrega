@@ -1,15 +1,19 @@
 window .onload = () => {
-    // Simula Base de Datos con valores por defecto
+    /** Simula Base de Datos con valores por defecto */
     var people = {
-        '1564604393562': { 'name': 'Elisa María' },
-        '1564604443863': { 'name': 'Luisa María' },
-        '1564604455736': { 'name': 'Laura Zapata' },
-        '1564607536489': { 'name': 'Ana María' },
-        '1564607703417': { 'name': 'Juliana' },
+        /** 
+         *  id:             1er Nivel de Profundidad del Objeto
+         *  name, gender:   2do Nivel de Profundidad del Objeto
+         */
+        '1564604393562': { 'name': 'Elisa María', 'gender': 'female' },
+        '1564604443863': { 'name': 'Luisa María', 'gender': 'female' },
+        '1564604455736': { 'name': 'Laura Zapata', 'gender': 'female' },
+        '1564607536489': { 'name': 'Ana María', 'gender': 'female' },
+        '1564607703417': { 'name': 'Juliana', 'gender': 'female' },
     }
 
     // Class con CRUD de datos
-    class Data {
+    class DB {
         constructor( data ) {
             this .data = data;
             console .log( Date .now() ); 
@@ -31,7 +35,9 @@ window .onload = () => {
         }
     }
 
-    let peopleList = new Data( people );                // Instancia
+    /** Pruebas de funcionalidad de CRUD sobre el Objeto */
+    let peopleList = new DB( people ),                  // Instancia
+        data = peopleList .data;
 
     console .log( 'Inicial',  peopleList .data );       // Estructura de datos inicial
 
@@ -41,5 +47,25 @@ window .onload = () => {
     peopleList .delete( 1564607703417 );                // Elimina un objeto específico
     
     console .log( 'Final', peopleList .data );          // Estructura de datos final
+
+    // Itera por ID (1er Nivel de Profundidad del Objeto)
+    for ( let id in data ) {
+
+        // Valida que el id exista dentro del Objeto iterado
+        if ( data .hasOwnProperty( id ) ) {
+            let properties = Object .getOwnPropertyNames( data[ id ] );     // Obtiene todas las propiedades existentes del objeto
+          
+            console .group( `id = ${ id }` );
+            //console .log( `${ properties }` );
+
+            // Itera propiedades (2do Nivel de Profundidad del Objeto)
+            properties .forEach( property => {
+                console .log( `${ property } = ${ data[ id ][ property ] }` );
+            });
+            console .groupEnd();
+
+        }
+    }
+   
 
 }
