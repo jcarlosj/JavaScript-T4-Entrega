@@ -62,6 +62,7 @@ window .onload = () => {
             // Itera propiedades (2do Nivel de Profundidad del Objeto)
             properties .forEach( property => {
                 console .log( `${ property } = ${ data[ id ][ property ] }` );
+                console .log( createListItemElement( property, data[ id ][ property ] ) );
             });
             console .groupEnd();
 
@@ -74,21 +75,22 @@ window .onload = () => {
         $ul .setAttribute( 'data-id', value );
         return $ul;
     }
-    
-    function createListItemElement() {
+
+    function createListItemElement( prop, value ) {
         let $li = document .createElement( 'li' ),
             $label = document .createElement( 'label' ),
             $span = document .createElement( 'span' ),
-            $contentLabel = document .createTextNode( 'Propiedad' ),
-            $contentSpan = document .createTextNode( 'Valor' );
+            $contentLabel = document .createTextNode( prop ),
+            $contentSpan = document .createTextNode( value );
 
+        $label .setAttribute( 'class', `prop prop-${ prop }` );    
         $label .appendChild( $contentLabel );    
+        $span .setAttribute( 'class', `cont cont-${ prop }` ); 
         $span .appendChild( $contentSpan );
         $li .appendChild( $label );
         $li .appendChild( $span );
 
-        console .log( $li );
+        return $li;
     }
-    createListItemElement();
 
 }
