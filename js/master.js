@@ -74,5 +74,21 @@ window .onload = () => {
         $ul .setAttribute( 'data-id', value );
         return $ul;
     }
+    
+    function createListItemElement() {
+        let $li = document .createElement( 'li' ),
+            $label = document .createElement( 'label' ),
+            $span = document .createElement( 'span' ),
+            $contentLabel = document .createTextNode( 'Propiedad' ),
+            $contentSpan = document .createTextNode( 'Valor' );
+
+        $label .appendChild( $contentLabel );    
+        $span .appendChild( $contentSpan );
+        $li .appendChild( $label );
+        $li .appendChild( $span );
+
+        console .log( $li );
+    }
+    createListItemElement();
 
 }
