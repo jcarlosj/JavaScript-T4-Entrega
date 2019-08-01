@@ -48,6 +48,8 @@ window .onload = () => {
     
     console .log( 'Final', peopleList .data );          // Estructura de datos final
 
+
+
     function show() {
         // Itera por ID (1er Nivel de Profundidad del Objeto)
         for ( let id in data ) {
@@ -72,7 +74,21 @@ window .onload = () => {
             }
         }
     }
-   
+    function createControlElements() {
+        var actions = new Array( 'add', 'edit', 'delete' ),
+            $ul = document .createElement( 'ul' );
+
+            for( const item in actions ) {
+                let $li = document .createElement( 'li' ),
+                    $contentLi = document .createTextNode( actions[ item ] );
+
+                $li .appendChild( $contentLi );    
+                $li .setAttribute( 'class', actions[ item ] );
+                $ul .appendChild( $li );
+            }
+                
+            console .log( $ul );
+    }
     function createUnorderListElement( value ) {
         let $ul = document .createElement( 'ul' );
 
@@ -98,5 +114,6 @@ window .onload = () => {
     }
 
     show();
+    createControlElements();
 
 }
