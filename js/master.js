@@ -48,26 +48,28 @@ window .onload = () => {
     
     console .log( 'Final', peopleList .data );          // Estructura de datos final
 
-    // Itera por ID (1er Nivel de Profundidad del Objeto)
-    for ( let id in data ) {
+    function show() {
+        // Itera por ID (1er Nivel de Profundidad del Objeto)
+        for ( let id in data ) {
 
-        // Valida que el id exista dentro del Objeto iterado
-        if ( data .hasOwnProperty( id ) ) {
-            let properties = Object .getOwnPropertyNames( data[ id ] );     // Obtiene todas las propiedades existentes del objeto
-          
-            console .group( `id = ${ id }` );
-            //console .log( `${ properties }` );
-            let $ul = createUnorderListElement( id );                       // Crea un elemento UL por cada ID del Objeto
+            // Valida que el id exista dentro del Objeto iterado
+            if ( data .hasOwnProperty( id ) ) {
+                let properties = Object .getOwnPropertyNames( data[ id ] );     // Obtiene todas las propiedades existentes del objeto
+            
+                //console .group( `id = ${ id }` );
+                //console .log( `${ properties }` );
+                let $ul = createUnorderListElement( id );                       // Crea un elemento UL por cada ID del Objeto
 
-            // Itera propiedades (2do Nivel de Profundidad del Objeto)
-            properties .forEach( property => {
-                //console .log( `${ property } = ${ data[ id ][ property ] }` );
-                $ul .appendChild( createListItemElement( property, data[ id ][ property ] ) );    // Crea un LI por cada propiedad del Objeto iterado y lo agrega al elemento UL
-            });
-            console .log( $ul );
-            console .groupEnd();
+                // Itera propiedades (2do Nivel de Profundidad del Objeto)
+                properties .forEach( property => {
+                    //console .log( `${ property } = ${ data[ id ][ property ] }` );
+                    $ul .appendChild( createListItemElement( property, data[ id ][ property ] ) );    // Crea un LI por cada propiedad del Objeto iterado y lo agrega al elemento UL
+                });
+                console .log( $ul );
+                console .groupEnd();
 
-            document .querySelector( '.data' ) .appendChild( $ul );
+                document .querySelector( '.data' ) .appendChild( $ul );
+            }
         }
     }
    
@@ -94,5 +96,7 @@ window .onload = () => {
 
         return $li;
     }
+
+    show();
 
 }
