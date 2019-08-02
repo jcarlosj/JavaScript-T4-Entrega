@@ -1,6 +1,3 @@
-.data {
-    display: grid;
-}
 ul {
     border: 1px solid #F3F3F3;
     border-radius: 5px;
@@ -14,4 +11,20 @@ label {
 }
 span {
     padding: 0 .5rem;
+}
+
+.btn {
+    padding: 0 .3rem;
+}
+.data {
+    display: flex;
+    flex-direction: column;
+}
+.records {
+    display: flex;
+}
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }

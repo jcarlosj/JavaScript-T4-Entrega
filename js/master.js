@@ -51,6 +51,18 @@ window .onload = () => {
 
 
     function show() {
+        let $data = document .querySelector( '.data' ),
+            $div = document .createElement( 'div' ),
+            $ul = document .createElement( 'ul' ),
+            $li = document .createElement( 'li' ),
+            $contentLi = document .createTextNode( 'add' );
+
+        $li .appendChild( $contentLi );
+        $ul .appendChild( $li );
+        $ul .setAttribute( 'class', 'actions' );
+        $data .appendChild( $ul );
+        $div .setAttribute( 'class', 'records' );
+            
         // Itera por ID (1er Nivel de Profundidad del Objeto)
         for ( let id in data ) {
 
@@ -67,12 +79,14 @@ window .onload = () => {
                     //console .log( `${ property } = ${ data[ id ][ property ] }` );
                     $ul .appendChild( createListItemElement( property, data[ id ][ property ] ) );    // Crea un LI por cada propiedad del Objeto iterado y lo agrega al elemento UL
                 });
-                console .log( $ul );
+                //console .log( $ul );
                 console .groupEnd();
 
-                document .querySelector( '.data' ) .appendChild( $ul );
+                $div .appendChild( $ul );
             }
         }
+        $data .appendChild( $div );
+        console .log( $data );
     }
     function createControlElements() {
         var actions = new Array( 'add', 'edit', 'delete' ),
@@ -80,18 +94,26 @@ window .onload = () => {
 
             for( const item in actions ) {
                 let $li = document .createElement( 'li' ),
-                    $contentLi = document .createTextNode( actions[ item ] );
+                    $a = document .createElement( 'a' ),
+                    $contentA = document .createTextNode( actions[ item ] );
 
-                $li .appendChild( $contentLi );    
+                $a .appendChild( $contentA );    
+                $a .setAttribute( 'class', 'btn' );
+                $li .appendChild( $a );    
                 $li .setAttribute( 'class', actions[ item ] );
                 $ul .appendChild( $li );
+                $ul .setAttribute( 'class', 'actions' );
             }
                 
-            console .log( $ul );
+            //console .log( $ul );
+            return $ul;
     }
     function createUnorderListElement( value ) {
-        let $ul = document .createElement( 'ul' );
+        let $ul = document .createElement( 'ul' ),
+            $li = document .createElement( 'li' );
 
+        $li .appendChild( createControlElements() );
+        $ul .appendChild( $li );
         $ul .setAttribute( 'data-id', value );
         return $ul;
     }
@@ -114,6 +136,5 @@ window .onload = () => {
     }
 
     show();
-    createControlElements();
 
 }
