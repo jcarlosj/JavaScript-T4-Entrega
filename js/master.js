@@ -55,9 +55,13 @@ window .onload = () => {
             $div = document .createElement( 'div' ),
             $ul = document .createElement( 'ul' ),
             $li = document .createElement( 'li' ),
-            $contentLi = document .createTextNode( 'add' );
+            $a = document .createElement( 'a' ),
+            $contentA = document .createTextNode( 'add' );
 
-        $li .appendChild( $contentLi );
+        $a .appendChild( $contentA );
+        $a .setAttribute( 'class', 'btn' );
+        $a .setAttribute( 'href', '#' );
+        $li .appendChild( $a );
         $ul .appendChild( $li );
         $ul .setAttribute( 'class', 'actions' );
         $data .appendChild( $ul );
@@ -99,6 +103,7 @@ window .onload = () => {
 
                 $a .appendChild( $contentA );    
                 $a .setAttribute( 'class', 'btn' );
+                $a .setAttribute( 'href', '#' );
                 $li .appendChild( $a );    
                 $li .setAttribute( 'class', actions[ item ] );
                 $ul .appendChild( $li );
